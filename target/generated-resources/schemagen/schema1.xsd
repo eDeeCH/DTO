@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+
+  <xs:element name="invoice" type="Invoice"/>
+
+  <xs:element name="invoiceItem" type="InvoiceItem"/>
+
+  <xs:complexType name="dto">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="Invoice">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:int"/>
+      <xs:element name="status" type="status"/>
+      <xs:element name="date" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" name="InvoiceItems" type="InvoiceItem"/>
+      <xs:element name="TotalAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InvoiceItem">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="Prise" type="xs:int"/>
+      <xs:element name="Amount" type="xs:int"/>
+      <xs:element name="Sum" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Paid"/>
+      <xs:enumeration value="Canceled"/>
+      <xs:enumeration value="NoPaid"/>
+      <xs:enumeration value="Returned"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
